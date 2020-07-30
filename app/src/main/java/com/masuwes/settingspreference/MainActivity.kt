@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // wrap this activity with fragments, also known as "fragment transaction"
         supportFragmentManager.beginTransaction().add(R.id.setting_holder, MyPreferenceFragment()).commit()
     }
 }

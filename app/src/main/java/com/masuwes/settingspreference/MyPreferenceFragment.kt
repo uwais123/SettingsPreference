@@ -7,28 +7,34 @@ import androidx.preference.EditTextPreference
 import androidx.preference.PreferenceFragmentCompat
 
 class MyPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+
+    // inisialisasi data, disini string smua
     private lateinit var NAME: String
     private lateinit var EMAIL: String
     private lateinit var AGE: String
     private lateinit var PHONE: String
     private lateinit var LOVE: String
 
+    // declare all of the preference layout components
     private lateinit var namePreference: EditTextPreference
     private lateinit var emailPreference: EditTextPreference
     private lateinit var agePreference: EditTextPreference
     private lateinit var phonePreference: EditTextPreference
     private lateinit var isLoveMuPreference: CheckBoxPreference
 
+    // adding default value as none
     companion object {
         private const val DEFAULT_VALUE = "Tidak ada"
     }
 
+    // same as android "onCreate"
     override fun onCreatePreferences(bundle: Bundle?, s: String?) {
         addPreferencesFromResource(R.xml.preference)
         init()
         setSummaries()
     }
 
+    // "in it" function
     private fun init() {
         NAME = resources.getString(R.string.key_name)
         EMAIL = resources.getString(R.string.key_email)
@@ -36,6 +42,7 @@ class MyPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
         PHONE = resources.getString(R.string.key_phone)
         LOVE = resources.getString(R.string.key_love)
 
+        // all of this guy need to use the unused(?) arguments
         namePreference = findPreference<EditTextPreference> (NAME) as EditTextPreference
         emailPreference = findPreference<EditTextPreference>(EMAIL) as EditTextPreference
         agePreference = findPreference<EditTextPreference>(AGE) as EditTextPreference
@@ -43,6 +50,7 @@ class MyPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
         isLoveMuPreference = findPreference<CheckBoxPreference>(LOVE) as CheckBoxPreference
     }
 
+    // same with the function name
     private fun setSummaries() {
         val sh = preferenceManager.sharedPreferences
         namePreference.summary = sh.getString(NAME, DEFAULT_VALUE)
@@ -62,6 +70,7 @@ class MyPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.OnSha
         preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
     }
 
+    // when the data in preference will be change, this function will work to edintified the data sharedPreference and type as "key"
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         if (key == NAME) {
             namePreference.summary = sharedPreferences.getString(NAME, DEFAULT_VALUE)
