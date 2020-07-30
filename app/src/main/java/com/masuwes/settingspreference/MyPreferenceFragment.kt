@@ -8,7 +8,7 @@ import androidx.preference.PreferenceFragmentCompat
 
 class MyPreferenceFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-    // inisialisasi data, disini string smua
+    // initialize all the data type, in this case we put all in strings
     private lateinit var NAME: String
     private lateinit var EMAIL: String
     private lateinit var AGE: String
